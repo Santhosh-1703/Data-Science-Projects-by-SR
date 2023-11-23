@@ -9,20 +9,17 @@ from sqlalchemy import create_engine
 import streamlit as st
 from streamlit_option_menu import option_menu
 import re
-import matplotlib.pyplot as plt
 import plotly.express as px
 from sqlalchemy import text
 
-
 # BUILDING CONNECTION WITH YOUTUBE API
-api_key = "AIzaSyClth7aj65yKLbY0AlSwuu9C7taV8vcTPA"  # "AIzaSyClth7aj65yKLbY0AlSwuu9C7taV8vcTPA"
+api_key = "***** youtube API KEY******" 
 youtube = build('youtube', 'v3', developerKey=api_key)
 
 #******* Establishing connection with MySQL workbench *********
-# CONNECTING WITH MYSQL DATABASE
- 
+# CONNECTION WITH MYSQL DATABASE
 user="root"
-password="1234"
+password="****"
 host="127.0.0.1"
 database= "youtube"
 port = "3306"
@@ -30,8 +27,7 @@ port = "3306"
 engine = create_engine("mysql+pymysql://{0}:{1}@{2}:{3}/{4}".format(user, password, host, port, database))
 con = engine.connect()
 
-
-#Function to get channel details:
+#FUNCTION TO GET CHANNEL DETAILS:
 def get_channel_details(channel_id):
     channel_data = []
     response = youtube.channels().list(part = 'snippet,contentDetails,statistics',
@@ -50,8 +46,8 @@ def get_channel_details(channel_id):
                     )
         channel_data.append(data)
     return channel_data
-
-#Function to get playlist details:
+ 
+#FUNCTION TO GET PLAYLIST DETAILS:
 def get_playlist(channel_id):
     playlist = []
     # Get the Uploads playlist ID for the specified channel
@@ -104,8 +100,8 @@ def get_channel_videos(channel_id):
         if next_page_token is None:
             break
     return video_ids
-
-#Function to convert duration to mins & seconds:
+ 
+#FUNCTION TO CONVERT DURATION TO MINS & SECONDS:
 def parse_duration(video_duration):
     minutes_match = re.search(r'(\d+)M', video_duration)
     seconds_match = re.search(r'(\d+)S', video_duration)
@@ -167,9 +163,8 @@ def get_comments_details(c):
             pass
     return comment_data
 
-
 #******* Establishing connection with MongoDB *********
-Global_client = MongoClient("mongodb+srv://Santhosh_Rajendran:xPCuIlt071luW6GT@project007.omottlc.mongodb.net/?retryWrites=true&w=majority")
+Global_client = MongoClient("mongodb+srv://Santhosh_Rajendran:############@project007.omottlc.mongodb.net/?retryWrites=true&w=majority")
 Database = Global_client["Youtube_data"]
 my_collection = Database["Channels"]
 channel_list = Database.list_collection_names()
@@ -190,7 +185,7 @@ with st.sidebar:
         options=["Home","---", "Extract", "Migrate", "Analysis Zone","About"],
         icons=["youtube","","cloud-arrow-up", "database-up", "clipboard2-data-fill","patch-question"],
         menu_icon="menu-up")
-    
+#----------------------------------------------------------------------------------------------------------------------------------------------------    
 # Page contents
 if selected_page == "Home":
     st.subheader("Hello Connections! Welcome to My Project Presentation")
@@ -213,7 +208,7 @@ if selected_page == "Home":
         st.write("  * MySQL WorkBench")
         st.write("  * MongoDB")
         st.write("  * Streamlit")
-#--------------------------------------------------------------------------------------------
+#--------------------------------------------------------------------------------------------------------------------------------------------------
 
 elif selected_page == "About":
     st.header(" :blue[Project Conclusion]")
@@ -227,7 +222,7 @@ elif selected_page == "About":
         st.write("4. Option to select a channel name and migrate its data from the data lake to a MySQL database as Tables.")
         st.write("5. Able to search and retrieve data from the MySQL database using different search options, including joining tables to get channel details.")
     with tab2:
-             # Create buttons to direct to different website
+             # buttons to direct to different website
             linkedin_button = st.button("LinkedIn")
             if linkedin_button:
                 st.write("[Redirect to LinkedIn Profile > (https://www.linkedin.com/in/santhosh-r-42220519b/)](https://www.linkedin.com/in/santhosh-r-42220519b/)")
@@ -239,7 +234,7 @@ elif selected_page == "About":
             github_button = st.button("GitHub")
             if github_button:
                 st.write("[Redirect to Github Profile > https://github.com/Santhosh-1703 ](https://github.com/Santhosh-1703)")
-#-------------------------------------------------------------------------------------------
+#-----------------------------------FUNCTION TO GET CHANNEL DETAILS & STORE IT IN MONGODB--------------------------------------------------------
 
 elif selected_page == "Extract":
     st.header("Extraction of Youtube data using API Key & Loading to MongoDB Database")
@@ -280,7 +275,7 @@ elif selected_page == "Extract":
                         "Comments_Details": data_to_insert["Comments_Details"]})
                     st.success("Successfully Uploaded to MongoDB🍃Atlas Datalake!!!")
             insert_data_to_mongodb(channel_id)
-#-------------------------------------------------------------------------------------------
+#-----------------------------------FUNCTION TO CONVERT UNSTRUCTURED DATA TO STRUCTURED DATA BY USING PANDAS--------------------------------------------------------
  
 elif selected_page == "Migrate":
     st.subheader('Channel data transformation for analysis')
@@ -351,7 +346,7 @@ elif selected_page == "Migrate":
                 # Display error message
                 st.error(f"An error occurred: {e}")
 
-#--------------------------------------------------------------------------------------------
+#----------------------------FUNCTION TO GET INSIGHTS FROM SQL TABLE----------------------------------------------------------------
 elif selected_page == "Analysis Zone":
     st.write("## :orange[Select any Question to get Insights]")
     questions = st.selectbox('Questions',
