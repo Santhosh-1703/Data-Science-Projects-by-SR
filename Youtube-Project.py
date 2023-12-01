@@ -178,13 +178,19 @@ def channel_names():
 
 st.set_page_config(page_title='Youtube Data Harvesting and Warehousing with MongoDB, MySQL',page_icon = "▶️", layout="wide")
 
-# Streamlit sidebar
-with st.sidebar:
-    selected_page = option_menu(
-        menu_title="Features",
-        options=["Home","---", "Extract", "Migrate", "Analysis Zone","About"],
-        icons=["youtube","","cloud-arrow-up", "database-up", "clipboard2-data-fill","patch-question"],
-        menu_icon="menu-up")
+# Front Page Design
+st.title("***Youtube Data Harvesting and Warehousing with 🍀MongoDB, 🧑‍💻MySQL***")
+st.subheader("***** Hello Connections! Welcome to My Project Presentation *****")
+selected_page = option_menu(
+    menu_title='Options',
+    options=["Home", "Extract", "Migrate", "Analysis Zone","About"],
+    icons=["youtube","cloud-arrow-up", "database-up", "clipboard2-data-fill","patch-question"],
+    default_index=1,
+    orientation="horizontal",
+    styles={"container": {"padding": "0!important", "background-color": "white","size":"cover", "width": "100"},
+            "icon": {"color": "FF0000", "font-size": "15px"},
+            "nav-link": {"font-size": "15px", "text-align": "center", "margin": "-2px", "--hover-color": "#FF0000"},
+            "nav-link-selected": {"background-color": "#FF0000"}})
 #----------------------------------------------------------------------------------------------------------------------------------------------------    
 # Page contents
 if selected_page == "Home":
@@ -207,10 +213,10 @@ if selected_page == "Home":
                 st.markdown(":coin: Users can able to know each Video Title & Related Playlists , Desciption, Duration,    Tags of each video, Likes, Comments. ")
                 st.markdown(":coin: Users can analyse Audience Feedback and Suggestions , Sentiment Analysis,  Moderation and Responses, Conversation Threads. ")
     with tab2:
-        st.write("  * Python")
-        st.write("  * MySQL WorkBench")
-        st.write("  * MongoDB")
-        st.write("  * Streamlit")
+        st.subheader("  :bulb: Python")
+        st.subheader("  :bulb: MySQL WorkBench")
+        st.subheader("  :bulb: MongoDB")
+        st.subheader("  :bulb: Streamlit")
 #--------------------------------------------------------------------------------------------------------------------------------------------------
 
 elif selected_page == "About":
