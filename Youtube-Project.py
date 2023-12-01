@@ -188,21 +188,24 @@ with st.sidebar:
 #----------------------------------------------------------------------------------------------------------------------------------------------------    
 # Page contents
 if selected_page == "Home":
-    st.subheader("Hello Connections! Welcome to My Project Presentation")
-    st.title("***Youtube Data Harvesting and Warehousing with 🍃MongoDB, 🧑‍💻MySQL***")
     tab1,tab2 = st.tabs(["Youtube Data Scrapping","  Applications and Libraries Used! "])
     with tab1:
         st.write(" Web scraping from YouTube using a scraper tool helps organizations gather valuable insights about video performance, user sentiment, and channel dynamics. By combining this data with information from social media, organizations can get a comprehensive view of their online presence and audience engagement. This approach enables data-driven decision-making and more effective content strategies.")
         st.write("[:open_book: Learn More  >](https://en.wikipedia.org/wiki/YouTube)")
-        st.markdown("Benefits of youtube data harvesting")
-        st.write(" =>  YouTube scraper simplifies the process of extracting valuable data from YouTube, making it quick, easy, and cost-effective. Whether you're a small business owner or part of a large organization's data department, using a scraper can offer numerous benefits for gathering insights from the platform.")
-        st.markdown("Channel Data")
-        st.write(""" =>  When scraping a YouTube channel page, you can extract data such as the number of subscribers, the total video count, playlists, and more. 
-                         On the "About" page, you'll find information about the total number of views for the channel.""")
-        st.markdown("Video Perfomance Data")
-        st.write("When you scrape the page for a specific video, you’ll receive the number of views, likes, channel subscribers, comments, and more. While each of these metrics can be analyzed individually, it is important to keep the ration of the metrics in mind.")
-        st.markdown("Sentimental Data")
-        st.write("Fortunately, numerous dedicated fans, casual viewers, and new audiences often leave considerate comments, either in response to the video's content or about it. Consequently, your comment section essentially becomes a valuable source of data regarding fan requests or preferences for various types of videos. Scraping the comment section simplifies the process of keeping your subscribers satisfied and delivering content that aligns with their interests.")
+        if st.button("Click here to know about Youtube Data"):
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                st.subheader(':orange[Channel Details]', divider='rainbow')
+                st.markdown(" :ribbon: From the Channel id provided, user can able to view Channel ID, Channel Playlist, Channel Subscribers & View Count ")
+                st.markdown(" :ribbon: User can analyse Audience Size and Growth, Content Volume and Frequency, Engagement Metrics & Channel Branding and Thumbnail Effectiveness ")
+            with col2:
+                st.subheader(':violet[Playlist & Video Details]', divider='rainbow')
+                st.markdown(":star: Users can able to know each Video Title & Related Playlists , Desciption, Duration,    Tags of each video, Likes, Comments. ")
+                st.markdown(":star: User can analyse Performance Metrics, Audience Retention, Demographic Insights & Playlist Performance ")
+            with col3:
+                st.subheader(':green[Comments Details]', divider='rainbow')
+                st.markdown(":coin: Users can able to know each Video Title & Related Playlists , Desciption, Duration,    Tags of each video, Likes, Comments. ")
+                st.markdown(":coin: Users can analyse Audience Feedback and Suggestions , Sentiment Analysis,  Moderation and Responses, Conversation Threads. ")
     with tab2:
         st.write("  * Python")
         st.write("  * MySQL WorkBench")
@@ -214,13 +217,12 @@ elif selected_page == "About":
     st.header(" :blue[Project Conclusion]")
     tab1,tab2 = st.tabs(["Features","Connect with me on"])
     with tab1:
-        st.write("The Streamlit application allows users to access and analyze data from multiple YouTube channels.")
-        st.caption("This application have the following features :")
-        st.write("1. Able to input a YouTube channel ID and retrieve all the relevant data (Channel name, Subscribers, Total video count, playlist ID, Video ID, Likes, Comments of each video) using Google API.")
-        st.write("2. Option to store the data in a MongoDB database as a Data lake.")
-        st.write("3. Able to collect data for up to 10 different YouTube channels and store them in the Data lake by clicking a upload button.")
+        st.write("This Streamlit application allows users to access and analyze data from multiple YouTube channels.")
+        st.write("1. User can able to input a YouTube channel ID and retrieve all the relevant data (Channel name, Subscribers, Total video count, playlist ID, Video ID, Likes, Comments of each video) using Google API.")
+        st.write("2. It has an option to store the data in a MongoDB database as a Unstructured Data.")
+        st.write("3. It can collect data for 10 different YouTube channels or more based upon user experience and store them in the Data lake by clicking a upload button.")
         st.write("4. Option to select a channel name and migrate its data from the data lake to a MySQL database as Tables.")
-        st.write("5. Able to search and retrieve data from the MySQL database using different search options, including joining tables to get channel details.")
+        st.write("5. Able to search and retrieve data from the MySQL database using different SQL Query options, including joining tables to get channel details.")
     with tab2:
              # buttons to direct to different website
             linkedin_button = st.button("LinkedIn")
